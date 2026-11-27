@@ -1,3 +1,5 @@
+import profilePhoto from '../assets/profile.jpg';
+
 export const portfolioData = {
   personal: {
     name: "Bavin M",
@@ -9,7 +11,7 @@ export const portfolioData = {
     github: "https://github.com/BavinRaj",
     linkedin: "https://linkedin.com/in/bavin-raj-m-823aa2268",
     resumeUrl: `${import.meta.env.BASE_URL}resume-bavin-m.pdf`,
-    profileImage: `${import.meta.env.BASE_URL}profile.jpg`,
+    profileImage: profilePhoto,
     shortIntro:
       "I am an Information Technology graduate currently preparing for placements and developing skills in Java Full Stack Development. I enjoy building responsive web applications and mastering modern technologies across Java, Spring Boot, React, and MySQL.",
     aboutText:
