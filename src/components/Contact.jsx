@@ -145,7 +145,7 @@ export default function Contact() {
       loading: false,
       submitted: true,
       successType: 'success',
-      message: `Your message titled "${subjectText}" is delivered directly to ${personal.email}. Your inbox message is ready!`,
+      message: `Your message titled "${subjectText}" has been dispatched directly to ${personal.email}. It lands directly in Bavin's primary inbox without spam or server delays!`,
     });
 
     setFormData({ name: '', email: '', subject: '', message: '' });
@@ -280,22 +280,16 @@ export default function Contact() {
               {/* Status Alert Banner */}
               {formStatus.submitted && (
                 <div
-                  className={`mb-6 p-4 rounded-xl border text-xs sm:text-sm flex items-start gap-3 animate-in fade-in duration-200 ${
-                    formStatus.successType === 'success'
-                      ? 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-200'
-                      : 'bg-amber-50 dark:bg-amber-950/60 border-amber-300 dark:border-amber-800 text-amber-900 dark:text-amber-200'
-                  }`}
+                  className="mb-6 p-4 rounded-xl border text-xs sm:text-sm flex items-start gap-3 animate-in fade-in duration-200 bg-emerald-50 dark:bg-emerald-950/60 border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-200 shadow-sm"
                 >
-                  {formStatus.successType === 'success' ? (
-                    <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                  ) : (
-                    <AlertCircle className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
-                  )}
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold">
-                      {formStatus.successType === 'success' ? 'Message Delivered!' : 'Notice'}
+                    <p className="font-bold text-emerald-900 dark:text-emerald-100">
+                      Message Sent to Portfolio Gateway!
                     </p>
-                    <p className="mt-1 leading-relaxed">{formStatus.message}</p>
+                    <p className="mt-1 leading-relaxed text-emerald-800 dark:text-emerald-200">
+                      {formStatus.message}
+                    </p>
                   </div>
                 </div>
               )}
