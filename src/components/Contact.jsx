@@ -41,7 +41,7 @@ export default function Contact() {
         submitted: true,
         loading: false,
         successType: 'success',
-        message: `Thank you! Your message has been sent directly to ${personal.email}.`,
+        message: `Thank you! Your message has been delivered directly to your inbox with mail title "Portfolio Gateway".`,
       });
     }
   }, [personal.email]);
@@ -90,17 +90,7 @@ export default function Contact() {
       successType: '',
       message: '',
     });
-
-    // After submission dispatches to the invisible iframe
-    setTimeout(() => {
-      setFormStatus({
-        loading: false,
-        submitted: true,
-        successType: 'success',
-        message: `Message sent! Your inquiry has been forwarded directly to ${personal.email}. Please check your inbox (or Spam folder if it is the first time).`,
-      });
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 1200);
+    // Natural submission to FormSubmit with direct redirect to ?status=success#contact
   };
 
   return (
@@ -265,19 +255,9 @@ export default function Contact() {
                 </div>
               )}
 
-              {/* Hidden iframe for seamless non-reloading form delivery */}
-              <iframe
-                name="formsubmit_target"
-                id="formsubmit_target"
-                title="formsubmit_target"
-                className="hidden"
-                style={{ display: 'none' }}
-              />
-
               <form
                 action={`https://formsubmit.co/${personal.email.trim()}`}
                 method="POST"
-                target="formsubmit_target"
                 onSubmit={handleFormSubmit}
                 noValidate
                 className="space-y-4"
@@ -285,13 +265,14 @@ export default function Contact() {
                 {/* FormSubmit Configuration Fields */}
                 <input type="hidden" name="_captcha" value="false" />
                 <input type="hidden" name="_template" value="box" />
+                <input type="hidden" name="_next" value="https://bavinraj.github.io/portfolio-bavin/?status=success#contact" />
                 <input
                   type="hidden"
                   name="_subject"
                   value={
                     formData.subject
-                      ? `[Portfolio Contact] ${formData.subject}`
-                      : `[Portfolio Contact] Message from ${formData.name || 'Visitor'}`
+                      ? `Portfolio Gateway: ${formData.subject}`
+                      : `Portfolio Gateway: Message from ${formData.name || 'Visitor'}`
                   }
                 />
                 <input type="hidden" name="_replyto" value={formData.email} />
@@ -425,7 +406,7 @@ export default function Contact() {
                   {/* Send via Default Email App */}
                   <a
                     href={`mailto:${personal.email}?subject=${encodeURIComponent(
-                      formData.subject || 'Portfolio Inquiry'
+                      `Portfolio Gateway - ${formData.subject || 'Inquiry'}`
                     )}&body=${encodeURIComponent(
                       `Hi Bavin,\n\n${formData.message || 'I would like to connect regarding an opportunity.'}\n\nFrom: ${
                         formData.name || 'Visitor'
@@ -441,7 +422,7 @@ export default function Contact() {
                   {/* Send via Gmail Web in 1 click */}
                   <a
                     href={`https://mail.google.com/mail/?view=cm&fs=1&to=${personal.email}&su=${encodeURIComponent(
-                      formData.subject || 'Portfolio Inquiry – Bavin M'
+                      `Portfolio Gateway - ${formData.subject || 'Inquiry'}`
                     )}&body=${encodeURIComponent(
                       `Hi Bavin,\n\n${formData.message || 'I would like to connect with you regarding an opportunity.'}\n\nRegards,\n${
                         formData.name || 'Visitor'
