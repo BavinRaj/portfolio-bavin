@@ -16,7 +16,7 @@ export const portfolioData = {
     github: "https://github.com/BavinRaj",
     linkedin: "https://linkedin.com/in/bavin-raj-m-823aa2268",
     resumeUrl: `${import.meta.env.BASE_URL}resume-bavin-m.pdf`,
-    profileImage: avatarPhoto,
+    profileImage: profilePhoto,
     avatarImage: avatarPhoto,
     officeImage: profilePhoto,
     shortIntro:

@@ -6,7 +6,7 @@ import avatarPhoto from '../assets/avatar.jpg';
 
 export default function ProfileVisual() {
   const { personal } = portfolioData;
-  const [imageSrc, setImageSrc] = useState(personal.avatarImage || avatarPhoto);
+  const [imageSrc, setImageSrc] = useState(profilePhoto);
   const [hasError, setHasError] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
@@ -70,7 +70,7 @@ export default function ProfileVisual() {
   };
 
   return (
-    <div className="perspective-container relative w-72 h-72 sm:w-80 sm:h-80 lg:w-[380px] lg:h-[380px] mx-auto select-none">
+    <div className="perspective-container relative w-72 h-[380px] sm:w-80 sm:h-[420px] lg:w-[350px] lg:h-[450px] mx-auto select-none">
       {/* Dynamic Ambient Background Glow that reacts to hover */}
       <div
         className={`absolute -inset-3 bg-gradient-to-tr from-sky-500 via-indigo-500 to-emerald-400 rounded-[32px] blur-xl transition-all duration-700 -z-10 ${
@@ -148,10 +148,10 @@ export default function ProfileVisual() {
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
-                setImageSrc(prev => prev === (personal.avatarImage || avatarPhoto) ? profilePhoto : (personal.avatarImage || avatarPhoto));
+                setImageSrc(prev => prev === profilePhoto ? avatarPhoto : profilePhoto);
               }}
               className="px-2.5 py-1.5 rounded-xl bg-slate-900/85 hover:bg-sky-600 text-white/90 hover:text-white border border-slate-700/70 backdrop-blur-md transition-all shadow-lg text-[11px] font-mono font-medium flex items-center gap-1 group/btn"
-              title="Toggle between Suit portrait & Office desk photo"
+              title="Toggle between Office photo & Studio portrait"
             >
               <Sparkles className="w-3.5 h-3.5 text-sky-400 group-hover/btn:text-white" />
               <span>Switch View</span>
@@ -189,7 +189,7 @@ export default function ProfileVisual() {
       </div>
 
       {/* Floating Badge 3: React & MySQL (Bottom Right) */}
-      <div className="absolute -bottom-3.5 right-12 z-20 hidden sm:block animate-float-3 pointer-events-none">
+      <div className="absolute -bottom-3.5 right-4 z-20 hidden sm:block animate-float-3 pointer-events-none">
         <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/95 text-indigo-300 text-xs font-mono font-medium border border-indigo-500/50 backdrop-blur-md shadow-xl">
           <Code2 className="w-4 h-4 text-indigo-400" />
           <span>React • MySQL</span>
