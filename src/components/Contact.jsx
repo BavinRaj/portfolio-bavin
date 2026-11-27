@@ -422,6 +422,7 @@ export default function Contact() {
                     )}
                   </button>
 
+                  {/* Send via Default Email App */}
                   <a
                     href={`mailto:${personal.email}?subject=${encodeURIComponent(
                       formData.subject || 'Portfolio Inquiry'
@@ -430,11 +431,29 @@ export default function Contact() {
                         formData.name || 'Visitor'
                       } (${formData.email || 'Email'})`
                     )}`}
-                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors"
-                    title="Send using your default mail app"
+                    className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors"
+                    title="Send using default desktop or phone mail app"
                   >
-                    <Mail className="w-4 h-4" />
-                    <span>Send via Email App</span>
+                    <Mail className="w-4 h-4 text-sky-500" />
+                    <span>Email App</span>
+                  </a>
+
+                  {/* Send via Gmail Web in 1 click */}
+                  <a
+                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=${personal.email}&su=${encodeURIComponent(
+                      formData.subject || 'Portfolio Inquiry – Bavin M'
+                    )}&body=${encodeURIComponent(
+                      `Hi Bavin,\n\n${formData.message || 'I would like to connect with you regarding an opportunity.'}\n\nRegards,\n${
+                        formData.name || 'Visitor'
+                      }\n${formData.email || ''}`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-xs sm:text-sm font-semibold text-rose-700 dark:text-rose-300 bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/60 dark:hover:bg-rose-900/60 border border-rose-200 dark:border-rose-800 transition-colors"
+                    title="Compose directly in Gmail Web"
+                  >
+                    <ExternalLink className="w-4 h-4 text-rose-500" />
+                    <span>Open in Gmail</span>
                   </a>
                 </div>
               </form>
