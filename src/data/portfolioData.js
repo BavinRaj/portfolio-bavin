@@ -1,4 +1,6 @@
 import profilePhoto from '../assets/profile.jpg';
+import collegePhoto from '../assets/college.jpg';
+import schoolPhoto from '../assets/school.jpg';
 
 export const portfolioData = {
   personal: {
@@ -209,6 +211,8 @@ export const portfolioData = {
       period: "2022 – 2026",
       status: "Graduated • CGPA: 7.81",
       statusColor: "blue",
+      image: collegePhoto,
+      imageCaption: "Kalasalingam University Campus",
       description:
         "Completed undergraduate studies in IT with a 7.81 CGPA. Coursework covered Data Structures, Algorithms, DBMS, Operating Systems, Computer Networks, and Software Engineering.",
     },
@@ -236,6 +240,8 @@ export const portfolioData = {
       period: "2019 – 2022",
       status: "Class XII: 74.3% • Class X: 69.8%",
       statusColor: "sky",
+      image: schoolPhoto,
+      imageCaption: "K S S Academy Campus",
       description:
         "Completed senior secondary education with distinction in computer science and mathematics.",
     },

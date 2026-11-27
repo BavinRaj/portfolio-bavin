@@ -1,9 +1,37 @@
-import React from 'react';
-import { GraduationCap, Award, BookOpen, Clock, Calendar, CheckCircle2 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { 
+  GraduationCap, 
+  Award, 
+  BookOpen, 
+  Clock, 
+  Calendar, 
+  CheckCircle2, 
+  Building2, 
+  Maximize2, 
+  X, 
+  School,
+  Sparkles
+} from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 export default function Education() {
   const { educationTimeline } = portfolioData;
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  // Close lightbox on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setSelectedImage(null);
+    };
+    if (selectedImage) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedImage]);
 
   return (
     <section id="education" className="py-20 relative">
@@ -11,13 +39,13 @@ export default function Education() {
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-16">
           <span className="text-xs font-mono font-semibold uppercase tracking-wider text-sky-700 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/50 px-3 py-1 rounded-full border border-sky-200/60 dark:border-sky-800/60 mb-3">
-            Academic Background & Training
+            Academic Background & Campus Life
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Education & Certifications
+            Education & Campus
           </h2>
           <p className="mt-3 text-slate-600 dark:text-slate-400 max-w-xl text-sm sm:text-base">
-            Structured timeline of formal undergraduate education, professional development, and technical diplomas.
+            Structured timeline of formal undergraduate education, professional training, and campus memories.
           </p>
           <div className="w-12 h-1 bg-sky-500 rounded-full mt-3"></div>
         </div>
@@ -54,7 +82,7 @@ export default function Education() {
                       isEven ? 'sm:pr-10' : 'sm:pl-10'
                     } w-full`}
                   >
-                    <div className="bg-white dark:bg-[#131d33] p-6 rounded-2xl border border-slate-200/90 dark:border-slate-800 shadow-sm hover:border-sky-500/40 hover:shadow-md transition-all duration-200">
+                    <div className="bg-white dark:bg-[#131d33] p-5 sm:p-6 rounded-2xl border border-slate-200/90 dark:border-slate-800 shadow-sm hover:border-sky-500/40 hover:shadow-lg transition-all duration-300 group/card">
                       {/* Badge & Period */}
                       <div className="flex items-center justify-between gap-2 mb-2">
                         <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
@@ -86,6 +114,50 @@ export default function Education() {
                       <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                         {item.description}
                       </p>
+
+                      {/* Campus Photo with Hover Animation */}
+                      {item.image && (
+                        <div
+                          onClick={() =>
+                            setSelectedImage({
+                              url: item.image,
+                              caption: item.imageCaption,
+                              title: item.organization,
+                              degree: item.title,
+                            })
+                          }
+                          className="group/campus relative mt-4 overflow-hidden rounded-xl border border-slate-200/90 dark:border-slate-700/80 bg-slate-950 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-sky-500/70 cursor-pointer"
+                        >
+                          <div className="relative h-44 sm:h-52 w-full overflow-hidden">
+                            {/* Animated Zooming Image */}
+                            <img
+                              src={item.image}
+                              alt={item.imageCaption || item.organization}
+                              className="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover/campus:scale-110 group-hover/campus:brightness-105"
+                              loading="lazy"
+                            />
+
+                            {/* Gradient Vignette */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-transparent pointer-events-none transition-opacity duration-300 group-hover/campus:opacity-75" />
+
+                            {/* Subtle Light Glare on Hover */}
+                            <div className="absolute inset-0 opacity-0 group-hover/campus:opacity-20 bg-gradient-to-tr from-transparent via-white to-transparent pointer-events-none transition-opacity duration-500" />
+
+                            {/* Campus Label & Click to Expand Pill */}
+                            <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between pointer-events-none">
+                              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10 shadow-sm">
+                                <Building2 className="w-3.5 h-3.5 text-sky-400" />
+                                <span>{item.imageCaption}</span>
+                              </span>
+
+                              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-sky-200 bg-sky-950/90 backdrop-blur-md px-2.5 py-1 rounded-lg border border-sky-700/50 opacity-0 group-hover/campus:opacity-100 transition-all duration-300 transform translate-y-1 group-hover/campus:translate-y-0 shadow-md">
+                                <Maximize2 className="w-3 h-3 text-sky-400" />
+                                <span>Click to View</span>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -94,6 +166,60 @@ export default function Education() {
           </div>
         </div>
       </div>
+
+      {/* Lightbox Modal for Full View */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200"
+          onClick={() => setSelectedImage(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            className="relative max-w-4xl w-full bg-slate-900 border border-slate-700/80 rounded-2xl overflow-hidden shadow-2xl animate-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-slate-800 bg-slate-900/90 backdrop-blur">
+              <div className="flex items-center gap-2">
+                <Building2 className="w-5 h-5 text-sky-400" />
+                <div>
+                  <h4 className="font-bold text-white text-base leading-tight">
+                    {selectedImage.caption}
+                  </h4>
+                  <p className="text-xs text-slate-400">
+                    {selectedImage.title}
+                  </p>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setSelectedImage(null)}
+                className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500"
+                aria-label="Close image preview"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Full Image */}
+            <div className="relative max-h-[75vh] overflow-hidden bg-black flex items-center justify-center">
+              <img
+                src={selectedImage.url}
+                alt={selectedImage.caption}
+                className="w-full h-auto max-h-[75vh] object-contain"
+              />
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-5 py-3 border-t border-slate-800 bg-slate-900/90 text-xs text-slate-400 flex items-center justify-between">
+              <span>{selectedImage.degree}</span>
+              <span className="text-slate-500">Press ESC or click outside to close</span>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
