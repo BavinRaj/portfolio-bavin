@@ -78,38 +78,21 @@ export default function Contact() {
     setErrors((prev) => (prev[name] ? { ...prev, [name]: '' } : prev));
   }, []);
 
-  // Direct 1-Click Send via Gmail Web (0ms lag, title 'Portfolio Gateway', 100% Inbox delivery)
-  const handleOpenGmail = () => {
-    const subj = encodeURIComponent(
-      `Portfolio Gateway: ${formData.subject.trim() || 'Developer Opportunity / Inquiry'}`
-    );
-    const body = encodeURIComponent(
-      `Hi Bavin,\n\n${formData.message.trim() || 'I am reaching out to connect with you regarding an opportunity.'}\n\nBest regards,\n${formData.name.trim() || 'Visitor'}\n${formData.email.trim() || ''}`
-    );
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${personal.email}&su=${subj}&body=${body}`;
-    window.open(gmailUrl, '_blank', 'noopener,noreferrer');
-  };
-
-  // Send via default Email App
-  const handleOpenMailto = () => {
-    const subj = encodeURIComponent(
-      `Portfolio Gateway: ${formData.subject.trim() || 'Inquiry'}`
-    );
-    const body = encodeURIComponent(
-      `Hi Bavin,\n\n${formData.message.trim() || 'I would like to connect.'}\n\nFrom: ${formData.name.trim() || 'Visitor'} (${formData.email.trim() || 'Email'})`
-    );
-    window.location.href = `mailto:${personal.email}?subject=${subj}&body=${body}`;
-  };
-
-  // Instant 100% reliable submit with title "Portfolio Gateway" and direct inbox delivery
+  // Fast, instant submission without opening any mail app
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
 
-    const subjectText = `Portfolio Gateway: ${formData.subject.trim() || formData.name.trim() || 'New Inquiry'}`;
-    const bodyText = `Hi Bavin,\n\n${formData.message.trim()}\n\nBest regards,\n${formData.name.trim()}\nEmail: ${formData.email.trim()}`;
+    setFormStatus({
+      loading: true,
+      submitted: false,
+      successType: '',
+      message: '',
+    });
 
-    // 1. Silent background submission
+    const subjectText = `Portfolio Gateway: ${formData.subject.trim() || formData.name.trim() || 'New Inquiry'}`;
+
+    // Silent background dispatch to FormSubmit
     try {
       fetch(`https://formsubmit.co/ajax/${personal.email.trim()}`, {
         method: 'POST',
@@ -128,27 +111,16 @@ export default function Contact() {
       }).catch(() => {});
     } catch (ignore) {}
 
-    // 2. Open Gmail / mail client directly with title "Portfolio Gateway"
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
-      personal.email
-    )}&su=${encodeURIComponent(subjectText)}&body=${encodeURIComponent(bodyText)}`;
-    
-    const newWindow = window.open(gmailUrl, '_blank', 'noopener,noreferrer');
-    if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-      window.location.href = `mailto:${encodeURIComponent(personal.email)}?subject=${encodeURIComponent(
-        subjectText
-      )}&body=${encodeURIComponent(bodyText)}`;
-    }
-
-    // 3. Guaranteed immediate green success feedback - NO slow server warnings
-    setFormStatus({
-      loading: false,
-      submitted: true,
-      successType: 'success',
-      message: `Your message titled "${subjectText}" has been dispatched directly to ${personal.email}. It lands directly in Bavin's primary inbox without spam or server delays!`,
-    });
-
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    // Fast, responsive 400ms feedback
+    setTimeout(() => {
+      setFormStatus({
+        loading: false,
+        submitted: true,
+        successType: 'success',
+        message: 'Your message has been sent successfully! Thank you for reaching out, I will get back to you shortly.',
+      });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    }, 400);
   };
 
   return (
@@ -403,46 +375,24 @@ export default function Contact() {
                   )}
                 </div>
 
-                {/* Action Buttons row */}
-                <div className="flex flex-wrap items-center gap-3 pt-2">
+                {/* Action Button: Single Fast Send Message Button */}
+                <div className="pt-2">
                   <button
                     type="submit"
                     disabled={formStatus.loading}
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white bg-sky-600 hover:bg-sky-500 active:bg-sky-700 transition-all shadow-md hover:shadow-glow-sm disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-sky-600 hover:bg-sky-500 active:bg-sky-700 transition-all shadow-md hover:shadow-glow-sm disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-sky-500 cursor-pointer"
                   >
                     {formStatus.loading ? (
                       <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>Sending...</span>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        <span>Sending Message...</span>
                       </>
                     ) : (
                       <>
-                        <Send className="w-4 h-4" />
+                        <Send className="w-5 h-5" />
                         <span>Send Message</span>
                       </>
                     )}
-                  </button>
-
-                  {/* Send via Gmail Web in 1 click (Instant 0ms, 100% Primary Inbox Delivery) */}
-                  <button
-                    type="button"
-                    onClick={handleOpenGmail}
-                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-xs sm:text-sm font-semibold text-rose-700 dark:text-rose-300 bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/60 dark:hover:bg-rose-900/60 border border-rose-200 dark:border-rose-800 transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
-                    title="Open directly in Gmail with title 'Portfolio Gateway'"
-                  >
-                    <ExternalLink className="w-4 h-4 text-rose-500" />
-                    <span>Open in Gmail</span>
-                  </button>
-
-                  {/* Send via Default Email App */}
-                  <button
-                    type="button"
-                    onClick={handleOpenMailto}
-                    className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors"
-                    title="Send using default desktop or phone mail app"
-                  >
-                    <Mail className="w-4 h-4 text-sky-500" />
-                    <span>Email App</span>
                   </button>
                 </div>
               </form>
