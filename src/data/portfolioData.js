@@ -2,6 +2,7 @@ import profilePhoto from '../assets/profile.jpg';
 import collegePhoto from '../assets/college.jpg';
 import schoolPhoto from '../assets/school.jpg';
 import fitaPhoto from '../assets/fita.jpg';
+import dcaPhoto from '../assets/dca.jpg';
 
 export const portfolioData = {
   personal: {
@@ -46,7 +47,7 @@ export const portfolioData = {
     },
     {
       title: "Diploma in Computer Applications (DCA)",
-      subtitle: "C, Python, HTML, CSS, MS Office",
+      subtitle: "CSC Computer Software College",
       status: "Certified",
       type: "diploma",
       color: "purple",
@@ -230,10 +231,12 @@ export const portfolioData = {
     },
     {
       title: "Diploma in Computer Applications (DCA)",
-      organization: "Technical Certification",
+      organization: "CSC Computer Software College",
       period: "Certified",
       status: "Completed",
       statusColor: "purple",
+      image: dcaPhoto,
+      imageCaption: "CSC Computer Software College",
       description:
         "Certification covering C, Python programming, HTML, CSS, MS Windows, and advanced productivity suites (MS Word, MS Excel, MS PowerPoint).",
     },
