@@ -62,7 +62,7 @@ export default function Navbar() {
           <a
             href="#home"
             onClick={(e) => handleLinkClick(e, '#home')}
-            className="flex items-center gap-3 group focus:outline-none rounded-xl p-1 transition-all"
+            className="flex items-center gap-2.5 group focus:outline-none rounded-xl p-1 transition-all shrink-0 min-w-max select-none"
           >
             <div className="relative w-10 h-10 rounded-xl overflow-hidden ring-2 ring-sky-500/50 group-hover:ring-sky-400 group-hover:scale-105 transition-all duration-300 shadow-md shadow-sky-500/25 shrink-0 bg-slate-800">
               <img
@@ -72,19 +72,21 @@ export default function Navbar() {
               />
               <span className="absolute bottom-0.5 right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-2 ring-white dark:ring-slate-950 animate-pulse"></span>
             </div>
-            <div className="flex flex-col">
-              <span className="font-bold text-base sm:text-lg text-slate-900 dark:text-white tracking-tight leading-tight group-hover:text-sky-500 dark:group-hover:text-sky-400 transition-colors flex items-center gap-1.5">
-                {portfolioData.personal.name}
-                <Sparkles className="w-3.5 h-3.5 text-sky-400 animate-pulse" />
-              </span>
-              <span className="text-[11px] font-mono text-sky-600 dark:text-sky-400 leading-tight">
+            <div className="flex flex-col text-left shrink-0 min-w-max">
+              <div className="flex items-center gap-1.5 whitespace-nowrap shrink-0">
+                <span className="font-extrabold text-base sm:text-lg text-slate-900 dark:text-white tracking-tight leading-none whitespace-nowrap shrink-0 group-hover:text-sky-400 transition-colors">
+                  Bavin M
+                </span>
+                <Sparkles className="w-3.5 h-3.5 text-sky-400 animate-pulse shrink-0 inline-block" />
+              </div>
+              <span className="text-[10px] sm:text-[11px] font-mono text-sky-500 dark:text-sky-400 leading-tight whitespace-nowrap shrink-0 mt-0.5">
                 Java Full Stack Dev
               </span>
             </div>
           </a>
 
           {/* Desktop Navigation Links (Capsule Pills) */}
-          <nav className="hidden md:flex items-center gap-1 bg-slate-100/70 dark:bg-slate-900/60 p-1 rounded-xl border border-slate-200/60 dark:border-white/[0.06]">
+          <nav className="hidden md:flex items-center gap-0.5 lg:gap-1 bg-slate-100/70 dark:bg-slate-900/60 p-1 rounded-xl border border-slate-200/60 dark:border-white/[0.06] shrink-0">
             {NAV_LINKS.map((link) => {
               const isActive = activeSection === link.href.substring(1);
               return (
