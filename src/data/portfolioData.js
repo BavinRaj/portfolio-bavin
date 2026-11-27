@@ -1,6 +1,7 @@
 import profilePhoto from '../assets/profile.jpg';
 import collegePhoto from '../assets/college.jpg';
 import schoolPhoto from '../assets/school.jpg';
+import fitaPhoto from '../assets/fita.jpg';
 
 export const portfolioData = {
   personal: {
@@ -222,6 +223,8 @@ export const portfolioData = {
       period: "06/2026 – 12/2026",
       status: "Currently Pursuing",
       statusColor: "emerald",
+      image: fitaPhoto,
+      imageCaption: "FITA Academy – Velachery, Chennai",
       description:
         "Comprehensive training in Core Java, OOP principles, Exception Handling, Spring Boot REST API development, React.js frontend, MySQL database queries, CRUD operations, and end-to-end connectivity.",
     },
