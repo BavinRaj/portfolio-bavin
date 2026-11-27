@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Camera, Sparkles, CheckCircle2, Code2, Server, Database, UploadCloud } from 'lucide-react';
+import { Sparkles, CheckCircle2, Code2, Server, Database } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import profilePhoto from '../assets/profile.jpg';
 import avatarPhoto from '../assets/avatar.jpg';
@@ -7,26 +7,23 @@ import avatarPhoto from '../assets/avatar.jpg';
 export default function ProfileVisual() {
   const { personal } = portfolioData;
   const [imageSrc, setImageSrc] = useState(profilePhoto);
-  const [hasError, setHasError] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const [isDragging, setIsDragging] = useState(false);
 
   const cardRef = useRef(null);
-  const fileInputRef = useRef(null);
 
   // 3D Tilt calculation on mouse move
   const handleMouseMove = (e) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left; // x position within the element
-    const y = e.clientY - rect.top;  // y position within the element
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const tiltX = ((y - centerY) / centerY) * -10; // max 10 deg tilt
-    const tiltY = ((x - centerX) / centerX) * 10;
+    const tiltX = ((y - centerY) / centerY) * -8;
+    const tiltY = ((x - centerX) / centerX) * 8;
 
     setTilt({ x: tiltX, y: tiltY });
   };
@@ -40,41 +37,12 @@ export default function ProfileVisual() {
     setTilt({ x: 0, y: 0 });
   };
 
-  const handleCustomImage = (file) => {
-    if (file && file.type.startsWith('image/')) {
-      const newUrl = URL.createObjectURL(file);
-      setImageSrc(newUrl);
-      setHasError(false);
-    }
-  };
-
-  const onFileInputChange = (e) => {
-    const file = e.target.files?.[0];
-    if (file) handleCustomImage(file);
-  };
-
-  const onDragOver = (e) => {
-    e.preventDefault();
-    setIsDragging(true);
-  };
-
-  const onDragLeave = () => {
-    setIsDragging(false);
-  };
-
-  const onDrop = (e) => {
-    e.preventDefault();
-    setIsDragging(false);
-    const file = e.dataTransfer.files?.[0];
-    if (file) handleCustomImage(file);
-  };
-
   return (
-    <div className="perspective-container relative w-72 h-[380px] sm:w-80 sm:h-[420px] lg:w-[350px] lg:h-[450px] mx-auto select-none">
+    <div className="perspective-container relative w-72 h-[390px] sm:w-80 sm:h-[430px] lg:w-[350px] lg:h-[460px] mx-auto select-none">
       {/* Dynamic Ambient Background Glow that reacts to hover */}
       <div
         className={`absolute -inset-3 bg-gradient-to-tr from-sky-500 via-indigo-500 to-emerald-400 rounded-[32px] blur-xl transition-all duration-700 -z-10 ${
-          isHovered ? 'opacity-80 scale-105 blur-2xl' : 'opacity-35 scale-100 animate-pulse'
+          isHovered ? 'opacity-85 scale-105 blur-2xl' : 'opacity-40 scale-100 animate-pulse-slow'
         }`}
       />
 
@@ -84,89 +52,46 @@ export default function ProfileVisual() {
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        onDragOver={onDragOver}
-        onDragLeave={onDragLeave}
-        onDrop={onDrop}
         style={{
-          transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale3d(${isHovered ? '1.03' : '1'}, ${isHovered ? '1.03' : '1'}, 1)`,
+          transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale3d(${isHovered ? '1.02' : '1'}, ${isHovered ? '1.02' : '1'}, 1)`,
           transition: isHovered ? 'transform 0.1s ease-out' : 'transform 0.5s ease-out',
         }}
-        className="relative w-full h-full p-1.5 rounded-[28px] bg-gradient-to-tr from-sky-500 via-indigo-500 to-emerald-400 shadow-2xl cursor-pointer group"
+        className="relative w-full h-full p-1.5 rounded-[28px] bg-gradient-to-tr from-sky-500 via-indigo-500 to-emerald-400 shadow-2xl group overflow-hidden"
       >
         <div className="relative w-full h-full rounded-[24px] overflow-hidden bg-slate-900 border border-slate-700/60 shadow-inner">
-          {/* Main Photo Image with Zoom on Hover */}
-          {!hasError ? (
-            <img
-              src={imageSrc}
-              alt={`${personal.name} - ${personal.title}`}
-              onError={() => setHasError(true)}
-              className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
-            />
-          ) : (
-            /* Fallback Avatar */
-            <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-slate-800 to-slate-900 text-center p-6">
-              <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white text-3xl font-bold font-mono shadow-glow-md mb-3">
-                BM
-              </div>
-              <h3 className="text-lg font-bold text-white">{personal.name}</h3>
-              <p className="text-xs text-sky-400 font-medium mt-1">{personal.title}</p>
-            </div>
-          )}
-
-          {/* Drag & Drop Overlay */}
-          {isDragging && (
-            <div className="absolute inset-0 bg-sky-950/90 border-2 border-dashed border-sky-400 flex flex-col items-center justify-center text-white z-20 animate-in fade-in duration-150">
-              <UploadCloud className="w-12 h-12 text-sky-400 animate-bounce mb-2" />
-              <p className="text-sm font-semibold">Drop your photo here</p>
-            </div>
-          )}
+          {/* Main Photo Image - Office Black Suit Portrait with IT Badge */}
+          <img
+            src={imageSrc}
+            alt={`${personal.name} - ${personal.title}`}
+            loading="eager"
+            decoding="async"
+            className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+          />
 
           {/* Interactive Light Glare overlay */}
           <div
-            className="absolute inset-0 pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-25 bg-gradient-to-tr from-transparent via-white to-transparent"
+            className="absolute inset-0 pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-20 bg-gradient-to-tr from-transparent via-white to-transparent"
             style={{
               transform: `translate(${tilt.y * 3}px, ${tilt.x * 3}px)`,
             }}
           />
 
-          {/* Subtle Bottom Shadow Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
+          {/* Subtle Bottom Shadow Gradient for text legibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
 
-          {/* Hidden File Input for Custom Photo Selection */}
-          <input
-            type="file"
-            ref={fileInputRef}
-            onChange={onFileInputChange}
-            accept="image/*"
-            className="hidden"
-            aria-label="Upload custom profile photo"
-          />
-
-          {/* Quick Photo Switcher & Upload */}
-          <div className="absolute bottom-3 right-3 flex items-center gap-1.5 z-10">
+          {/* Optional View Switcher Pill (Office / Studio) */}
+          <div className="absolute bottom-3 right-3 z-10">
             <button
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
-                setImageSrc(prev => prev === profilePhoto ? avatarPhoto : profilePhoto);
+                setImageSrc((prev) => (prev === profilePhoto ? avatarPhoto : profilePhoto));
               }}
-              className="px-2.5 py-1.5 rounded-xl bg-slate-900/85 hover:bg-sky-600 text-white/90 hover:text-white border border-slate-700/70 backdrop-blur-md transition-all shadow-lg text-[11px] font-mono font-medium flex items-center gap-1 group/btn"
-              title="Toggle between Office photo & Studio portrait"
+              className="px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-sky-600 text-white border border-slate-700/80 backdrop-blur-md transition-all shadow-lg text-xs font-mono font-medium flex items-center gap-1.5 group/btn cursor-pointer"
+              title="Click to toggle between Office portrait and Studio headshot"
             >
               <Sparkles className="w-3.5 h-3.5 text-sky-400 group-hover/btn:text-white" />
-              <span>Switch View</span>
-            </button>
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                fileInputRef.current?.click();
-              }}
-              className="p-2 rounded-xl bg-slate-900/85 hover:bg-sky-600 text-white/90 hover:text-white border border-slate-700/70 backdrop-blur-md transition-all shadow-lg focus:outline-none focus:ring-2 focus:ring-sky-400 group/btn"
-              title="Click to choose your own photo (or save as public/profile.jpg)"
-              aria-label="Upload your own photo"
-            >
-              <Camera className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
+              <span>{imageSrc === profilePhoto ? 'Studio View' : 'Office View'}</span>
             </button>
           </div>
         </div>
