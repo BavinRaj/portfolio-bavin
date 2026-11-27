@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom modern scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    background: #1e293b;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+  }
+}
+
+/* Glassmorphism utility */
+.glass-nav {
+  background-color: rgba(248, 250, 252, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.dark .glass-nav {
+  background-color: rgba(11, 17, 32, 0.85);
+}
+
+/* Subtle grid background for developer aesthetic */
+.dev-grid-bg {
+  background-size: 32px 32px;
+  background-image: linear-gradient(to right, rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+}
+
+.dark .dev-grid-bg {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Floating badge animations */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes floatSlowReverse {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+.animate-float-1 {
+  animation: floatSlow 4s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: floatSlowReverse 4.8s ease-in-out infinite 0.6s;
+}
+
+.animate-float-3 {
+  animation: floatSlow 4.2s ease-in-out infinite 1.2s;
+}
+
+/* Card perspective container */
+.perspective-container {
+  perspective: 1000px;
+}
