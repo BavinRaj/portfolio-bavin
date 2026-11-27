@@ -10,20 +10,29 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-white dark:bg-[#090e1a] border-t border-slate-200 dark:border-slate-800/80 py-12 transition-colors">
+    <footer className="bg-white dark:bg-[#070b14] border-t border-slate-200 dark:border-slate-800/80 py-12 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Brand Info */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <span className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
-              {personal.name}
-            </span>
-            <p className="text-sm text-sky-600 dark:text-sky-400 font-medium">
-              {personal.title}
-            </p>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-              Building scalable web applications with Java, Spring Boot & React.
-            </p>
+          <div className="flex items-center gap-3 text-center md:text-left">
+            <div className="w-10 h-10 rounded-xl overflow-hidden ring-2 ring-sky-500/40 shadow-sm shrink-0">
+              <img
+                src={personal.avatarImage}
+                alt={personal.name}
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div className="flex flex-col items-center md:items-start">
+              <span className="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-tight">
+                {personal.name}
+              </span>
+              <p className="text-xs text-sky-600 dark:text-sky-400 font-mono leading-tight">
+                {personal.title}
+              </p>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                Building scalable web applications with Java, Spring Boot & React.
+              </p>
+            </div>
           </div>
 
           {/* Social Icons & Back to top */}

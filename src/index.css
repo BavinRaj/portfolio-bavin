@@ -5,6 +5,8 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   /* Custom modern scrollbar */
@@ -32,24 +34,42 @@
 /* Glassmorphism utility */
 .glass-nav {
   background-color: rgba(248, 250, 252, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .dark .glass-nav {
-  background-color: rgba(11, 17, 32, 0.85);
+  background-color: rgba(7, 11, 20, 0.85);
+}
+
+/* Luxury Card Glassmorphism */
+.glass-card {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.dark .glass-card {
+  background-color: rgba(13, 20, 36, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.glass-card:hover {
+  border-color: rgba(14, 165, 233, 0.4);
 }
 
 /* Subtle grid background for developer aesthetic */
 .dev-grid-bg {
   background-size: 32px 32px;
-  background-image: linear-gradient(to right, rgba(148, 163, 184, 0.07) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+  background-image: linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
 }
 
 .dark .dev-grid-bg {
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
 }
 
 /* Floating badge animations */
@@ -71,6 +91,51 @@
   }
 }
 
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes pulseSlow {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes pulseSlower {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1.05);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .animate-float-1 {
   animation: floatSlow 4s ease-in-out infinite;
 }
@@ -81,6 +146,19 @@
 
 .animate-float-3 {
   animation: floatSlow 4.2s ease-in-out infinite 1.2s;
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 7s ease-in-out infinite;
+}
+
+.animate-pulse-slower {
+  animation: pulseSlower 9s ease-in-out infinite 1.5s;
+}
+
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradientShift 6s ease infinite;
 }
 
 /* Card perspective container */

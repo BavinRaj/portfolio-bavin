@@ -58,7 +58,7 @@ export default function Skills() {
             return (
               <div
                 key={catGroup.category}
-                className="group p-6 rounded-2xl bg-white dark:bg-[#131d33] border border-slate-200/90 dark:border-slate-800 hover:border-sky-500/50 hover:shadow-lg dark:hover:shadow-glow-sm transition-all duration-300 flex flex-col justify-between"
+                className="group p-6 rounded-2xl glass-card hover:border-sky-500/50 hover:shadow-xl dark:hover:shadow-glow-sm transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   {/* Category Header */}

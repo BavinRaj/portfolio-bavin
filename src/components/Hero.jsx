@@ -23,20 +23,31 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Introduction & Call to Actions */}
           <div className="lg:col-span-7 flex flex-col space-y-6 text-left">
-            {/* Status Pill */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium bg-sky-100 text-sky-800 dark:bg-sky-950/70 dark:text-sky-300 border border-sky-200 dark:border-sky-800/80 w-fit">
-              <span className="w-2 h-2 rounded-full bg-sky-500 animate-pulse" />
-              <span>Full Stack Development • Aspiring Software Engineer</span>
+            {/* Status Pill with Mini Avatar */}
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 border border-sky-200/80 dark:border-sky-800/80 shadow-sm w-fit animate-fade-in backdrop-blur-md">
+              <div className="relative w-5 h-5 rounded-full overflow-hidden ring-1 ring-sky-400 shrink-0">
+                <img
+                  src={personal.avatarImage}
+                  alt={personal.name}
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Full Stack Developer • Aspiring Software Engineer</span>
             </div>
 
             {/* Main Greeting & Headings */}
             <div className="space-y-2">
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-                Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-sky-500 to-indigo-500 dark:from-sky-400 dark:via-sky-300 dark:to-indigo-300">{personal.name}</span> <span className="inline-block hover:rotate-12 transition-transform cursor-default">👋</span>
+                Hi, I'm{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 via-indigo-500 to-cyan-400 dark:from-sky-400 dark:via-indigo-300 dark:to-cyan-300 animate-gradient">
+                  {personal.name}
+                </span>{' '}
+                <span className="inline-block hover:rotate-12 transition-transform cursor-default">👋</span>
               </h1>
               
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-800 dark:text-slate-100">
-                {personal.title}
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+                <span>{personal.title}</span>
               </h2>
 
               <p className="text-base sm:text-lg font-medium text-sky-700 dark:text-sky-400">

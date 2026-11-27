@@ -63,20 +63,26 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo / Brand */}
+          {/* Logo / Brand with Profile Avatar */}
           <a
             href="#home"
             onClick={(e) => handleLinkClick(e, '#home')}
-            className="flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-sky-500 rounded-lg p-1"
+            className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-sky-500 rounded-xl p-1 transition-all"
           >
-            <div className="w-9 h-9 rounded-lg bg-sky-500 flex items-center justify-center text-white font-mono font-bold text-lg shadow-glow-sm group-hover:scale-105 transition-transform">
-              BM
+            <div className="relative w-10 h-10 rounded-xl overflow-hidden ring-2 ring-sky-500/50 group-hover:ring-sky-400 group-hover:scale-105 transition-all duration-300 shadow-md shadow-sky-500/20 shrink-0 bg-slate-800">
+              <img
+                src={portfolioData.personal.avatarImage}
+                alt={portfolioData.personal.name}
+                className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+              />
+              <span className="absolute bottom-0.5 right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-slate-900 animate-pulse"></span>
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-base sm:text-lg text-slate-900 dark:text-white tracking-tight leading-tight group-hover:text-sky-500 dark:group-hover:text-sky-400 transition-colors">
+              <span className="font-bold text-base sm:text-lg text-slate-900 dark:text-white tracking-tight leading-tight group-hover:text-sky-500 dark:group-hover:text-sky-400 transition-colors flex items-center gap-1.5">
                 {portfolioData.personal.name}
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-sky-500 opacity-75"></span>
               </span>
-              <span className="text-[11px] font-mono text-slate-700 dark:text-slate-400 leading-tight">
+              <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 leading-tight">
                 Java Full Stack Dev
               </span>
             </div>
@@ -134,7 +140,20 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-[#0f172a]/95 backdrop-blur-md px-4 pt-3 pb-6 space-y-2 animate-in slide-in-from-top-2 duration-200">
+        <div className="md:hidden border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-[#080d1a]/95 backdrop-blur-xl px-4 pt-4 pb-6 space-y-3 animate-in slide-in-from-top-2 duration-200">
+          <div className="flex items-center gap-3 pb-3 border-b border-slate-100 dark:border-slate-800/80">
+            <div className="w-10 h-10 rounded-xl overflow-hidden ring-2 ring-sky-500/50 shrink-0">
+              <img
+                src={portfolioData.personal.avatarImage}
+                alt={portfolioData.personal.name}
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div>
+              <div className="font-bold text-slate-900 dark:text-white text-sm">{portfolioData.personal.name}</div>
+              <div className="text-xs text-sky-500 font-mono">Java Full Stack Developer</div>
+            </div>
+          </div>
           <nav className="flex flex-col space-y-1">
             {NAV_LINKS.map((link) => {
               const isActive = activeSection === link.href.substring(1);

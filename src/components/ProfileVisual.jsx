@@ -2,10 +2,11 @@ import React, { useState, useRef } from 'react';
 import { Camera, Sparkles, CheckCircle2, Code2, Server, Database, UploadCloud } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import profilePhoto from '../assets/profile.jpg';
+import avatarPhoto from '../assets/avatar.jpg';
 
 export default function ProfileVisual() {
   const { personal } = portfolioData;
-  const [imageSrc, setImageSrc] = useState(personal.profileImage || profilePhoto);
+  const [imageSrc, setImageSrc] = useState(personal.avatarImage || avatarPhoto);
   const [hasError, setHasError] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
@@ -141,19 +142,33 @@ export default function ProfileVisual() {
             aria-label="Upload custom profile photo"
           />
 
-          {/* Change Photo / Upload Overlay Button */}
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              fileInputRef.current?.click();
-            }}
-            className="absolute bottom-3 right-3 p-2.5 rounded-xl bg-slate-900/85 hover:bg-sky-600 text-white/90 hover:text-white border border-slate-700/70 backdrop-blur-md transition-all shadow-lg focus:outline-none focus:ring-2 focus:ring-sky-400 group/btn"
-            title="Click to choose your own photo (or save as public/profile.jpg)"
-            aria-label="Upload your own photo"
-          >
-            <Camera className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
-          </button>
+          {/* Quick Photo Switcher & Upload */}
+          <div className="absolute bottom-3 right-3 flex items-center gap-1.5 z-10">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setImageSrc(prev => prev === (personal.avatarImage || avatarPhoto) ? profilePhoto : (personal.avatarImage || avatarPhoto));
+              }}
+              className="px-2.5 py-1.5 rounded-xl bg-slate-900/85 hover:bg-sky-600 text-white/90 hover:text-white border border-slate-700/70 backdrop-blur-md transition-all shadow-lg text-[11px] font-mono font-medium flex items-center gap-1 group/btn"
+              title="Toggle between Suit portrait & Office desk photo"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-sky-400 group-hover/btn:text-white" />
+              <span>Switch View</span>
+            </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                fileInputRef.current?.click();
+              }}
+              className="p-2 rounded-xl bg-slate-900/85 hover:bg-sky-600 text-white/90 hover:text-white border border-slate-700/70 backdrop-blur-md transition-all shadow-lg focus:outline-none focus:ring-2 focus:ring-sky-400 group/btn"
+              title="Click to choose your own photo (or save as public/profile.jpg)"
+              aria-label="Upload your own photo"
+            >
+              <Camera className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
+            </button>
+          </div>
         </div>
       </div>
 

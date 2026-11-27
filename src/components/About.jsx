@@ -6,7 +6,7 @@ export default function About({ onPreview }) {
   const { personal, aboutHighlights } = portfolioData;
 
   return (
-    <section id="about" className="py-20 bg-slate-100/60 dark:bg-[#0f172a]/60 relative">
+    <section id="about" className="py-20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-12">
@@ -22,7 +22,7 @@ export default function About({ onPreview }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Main Story & Technical Ambition */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="bg-white dark:bg-[#131d33] p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
+            <div className="glass-card p-6 sm:p-8 rounded-2xl space-y-5">
               <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                 <Code className="w-5 h-5 text-sky-500" />
                 Aspiring Java Full Stack Engineer

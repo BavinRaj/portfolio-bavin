@@ -82,7 +82,7 @@ export default function Education() {
                       isEven ? 'sm:pr-10' : 'sm:pl-10'
                     } w-full`}
                   >
-                    <div className="bg-white dark:bg-[#131d33] p-5 sm:p-6 rounded-2xl border border-slate-200/90 dark:border-slate-800 shadow-sm hover:border-sky-500/40 hover:shadow-lg transition-all duration-300 group/card">
+                    <div className="glass-card p-5 sm:p-6 rounded-2xl shadow-sm hover:border-sky-500/50 hover:shadow-xl transition-all duration-300 group/card">
                       {/* Badge & Period */}
                       <div className="flex items-center justify-between gap-2 mb-2">
                         <span className="text-xs font-mono text-slate-500 dark:text-slate-400">

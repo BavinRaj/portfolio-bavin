@@ -163,7 +163,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-slate-100/60 dark:bg-[#0f172a]/60 relative">
+    <section id="contact" className="py-20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-14">
@@ -182,7 +182,7 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* Left Column: Direct Contact Info & Socials */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="bg-white dark:bg-[#131d33] p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+            <div className="glass-card p-6 sm:p-8 rounded-2xl shadow-sm space-y-6">
               <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                 Contact Information
               </h3>
@@ -275,7 +275,7 @@ export default function Contact() {
 
           {/* Right Column: Contact Form */}
           <div className="lg:col-span-7">
-            <div className="bg-white dark:bg-[#131d33] p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div className="glass-card p-6 sm:p-8 rounded-2xl shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                   Send a Message

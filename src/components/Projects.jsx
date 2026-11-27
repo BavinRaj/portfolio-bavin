@@ -19,7 +19,7 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
 
   return (
-    <section id="projects" className="py-20 bg-slate-100/60 dark:bg-[#0f172a]/60 relative">
+    <section id="projects" className="py-20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-14">
@@ -43,10 +43,10 @@ export default function Projects() {
             return (
               <div
                 key={project.id}
-                className={`relative flex flex-col justify-between rounded-2xl p-6 sm:p-7 bg-white dark:bg-[#131d33] border transition-all duration-300 ${
+                className={`relative flex flex-col justify-between rounded-2xl p-6 sm:p-7 glass-card transition-all duration-300 hover:scale-[1.02] ${
                   isFeatured
-                    ? 'border-sky-300/80 dark:border-sky-700/60 shadow-lg dark:shadow-glow-sm hover:border-sky-500 ring-1 ring-sky-500/10'
-                    : 'border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 opacity-90'
+                    ? 'border-sky-400/80 dark:border-sky-600/60 shadow-lg dark:shadow-glow-sm hover:border-sky-400 ring-1 ring-sky-500/20'
+                    : 'hover:border-slate-300 dark:hover:border-slate-600 opacity-90'
                 }`}
               >
                 <div>
