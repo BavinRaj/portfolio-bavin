@@ -80,19 +80,19 @@ export default function Hero() {
               <a
                 href="#projects"
                 onClick={(e) => handleScrollTo(e, 'projects')}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-base font-semibold text-white bg-sky-600 hover:bg-sky-500 active:bg-sky-700 shadow-md hover:shadow-glow-sm transition-all focus:outline-none focus:ring-2 focus:ring-sky-500"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm sm:text-base font-semibold text-white bg-gradient-to-r from-sky-500 via-indigo-500 to-cyan-500 hover:from-sky-400 hover:to-cyan-400 shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 hover:scale-105 active:scale-95 transition-all duration-300 focus:outline-none"
               >
-                <span>View My Projects</span>
-                <ArrowDown className="w-4 h-4" />
+                <span>Explore Projects</span>
+                <ArrowDown className="w-4 h-4 animate-bounce" />
               </a>
 
               <a
                 href={personal.resumeUrl}
                 download="Bavin_M_Resume.pdf"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-base font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800/90 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm sm:text-base font-semibold text-slate-800 dark:text-slate-100 bg-white/80 dark:bg-slate-900/80 border border-slate-300/80 dark:border-white/10 hover:border-sky-500/50 hover:bg-slate-100/90 dark:hover:bg-slate-800/90 hover:scale-105 active:scale-95 transition-all duration-300 shadow-md backdrop-blur-md focus:outline-none"
               >
-                <FileDown className="w-4 h-4 text-sky-600 dark:text-sky-400" />
-                <span>Download Resume</span>
+                <FileDown className="w-4 h-4 text-sky-500" />
+                <span>Get Resume</span>
               </a>
             </div>
 

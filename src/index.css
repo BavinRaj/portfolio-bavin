@@ -17,59 +17,72 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+    background: #94a3b8;
     border-radius: 9999px;
   }
   .dark ::-webkit-scrollbar-thumb {
     background: #1e293b;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
+    background: #64748b;
   }
   .dark ::-webkit-scrollbar-thumb:hover {
-    background: #334155;
+    background: #38bdf8;
   }
 }
 
-/* Glassmorphism utility */
-.glass-nav {
-  background-color: rgba(248, 250, 252, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+/* Cosmic Dot-Grid Aesthetic */
+.cosmic-grid-bg {
+  background-size: 28px 28px;
+  background-image: radial-gradient(rgba(148, 163, 184, 0.15) 1px, transparent 1px);
 }
 
-.dark .glass-nav {
-  background-color: rgba(7, 11, 20, 0.85);
+.dark .cosmic-grid-bg {
+  background-image: radial-gradient(rgba(56, 189, 248, 0.08) 1.2px, transparent 1.2px);
 }
 
-/* Luxury Card Glassmorphism */
+/* Glassmorphism Luxury Cards */
 .glass-card {
   background-color: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .dark .glass-card {
-  background-color: rgba(13, 20, 36, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  background-color: rgba(8, 14, 28, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
 }
 
 .glass-card:hover {
-  border-color: rgba(14, 165, 233, 0.4);
+  transform: translateY(-3px);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 16px 40px -10px rgba(56, 189, 248, 0.15);
 }
 
-/* Subtle grid background for developer aesthetic */
-.dev-grid-bg {
-  background-size: 32px 32px;
-  background-image: linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+.dark .glass-card:hover {
+  box-shadow: 0 16px 40px -10px rgba(14, 165, 233, 0.22);
 }
 
-.dark .dev-grid-bg {
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+/* Gradient Flow Animations */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 250% auto;
+  animation: gradientShift 6s ease-in-out infinite;
 }
 
 /* Floating badge animations */
@@ -91,48 +104,25 @@
   }
 }
 
-@keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.4;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.04);
-  }
-}
-
 @keyframes pulseSlow {
   0%, 100% {
-    opacity: 0.25;
+    opacity: 0.35;
     transform: scale(1);
   }
   50% {
-    opacity: 0.55;
+    opacity: 0.65;
     transform: scale(1.08);
   }
 }
 
 @keyframes pulseSlower {
   0%, 100% {
-    opacity: 0.2;
+    opacity: 0.25;
     transform: scale(1.05);
   }
   50% {
-    opacity: 0.45;
+    opacity: 0.55;
     transform: scale(0.95);
-  }
-}
-
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
   }
 }
 
@@ -154,11 +144,6 @@
 
 .animate-pulse-slower {
   animation: pulseSlower 9s ease-in-out infinite 1.5s;
-}
-
-.animate-gradient {
-  background-size: 200% auto;
-  animation: gradientShift 6s ease infinite;
 }
 
 /* Card perspective container */

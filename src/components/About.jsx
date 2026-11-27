@@ -16,7 +16,7 @@ export default function About({ onPreview }) {
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             About Me
           </h2>
-          <div className="w-12 h-1 bg-sky-500 rounded-full mt-3"></div>
+          <div className="w-16 h-1 bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-500 rounded-full mt-3 shadow-glow-sm"></div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">

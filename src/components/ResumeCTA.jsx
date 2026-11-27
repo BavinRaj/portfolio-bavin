@@ -8,9 +8,10 @@ export default function ResumeCTA({ onPreview }) {
   return (
     <section className="py-16 relative">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-sky-900 via-[#0c4a6e] to-[#0f172a] text-white p-8 sm:p-12 shadow-2xl border border-sky-500/20">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#071329] via-[#0b1b3a] to-[#091024] text-white p-8 sm:p-12 shadow-2xl border border-cyan-500/30 shadow-[0_0_50px_rgba(14,165,233,0.15)]">
           {/* Subtle background glow */}
-          <div className="absolute top-0 right-0 -mt-10 -mr-10 w-72 h-72 bg-sky-500/20 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="absolute top-0 right-0 -mt-10 -mr-10 w-80 h-80 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none animate-pulse-slow"></div>
+          <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none animate-pulse-slower"></div>
 
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
             <div className="space-y-3 max-w-xl">

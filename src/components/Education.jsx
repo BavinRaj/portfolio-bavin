@@ -47,13 +47,13 @@ export default function Education() {
           <p className="mt-3 text-slate-600 dark:text-slate-400 max-w-xl text-sm sm:text-base">
             Structured timeline of formal undergraduate education, professional training, and campus memories.
           </p>
-          <div className="w-12 h-1 bg-sky-500 rounded-full mt-3"></div>
+          <div className="w-16 h-1 bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-500 rounded-full mt-3 shadow-glow-sm"></div>
         </div>
 
         {/* Timeline Container */}
         <div className="max-w-3xl mx-auto relative">
-          {/* Vertical Timeline Line */}
-          <div className="absolute left-4 sm:left-1/2 top-4 bottom-4 w-0.5 bg-slate-200 dark:bg-slate-800 -translate-x-1/2"></div>
+          {/* Vertical Timeline Line with Glowing Gradient */}
+          <div className="absolute left-4 sm:left-1/2 top-4 bottom-4 w-0.5 bg-gradient-to-b from-cyan-400 via-indigo-500 to-emerald-400 -translate-x-1/2 opacity-80 shadow-glow-sm"></div>
 
           <div className="space-y-12">
             {educationTimeline.map((item, index) => {
