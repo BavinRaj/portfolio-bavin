@@ -20,9 +20,9 @@ export default function Hero() {
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-sky-500/10 dark:bg-sky-500/15 blur-[120px] rounded-full pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column: Introduction & Call to Actions */}
-          <div className="lg:col-span-7 flex flex-col space-y-6 text-left">
+          <div className="md:col-span-7 flex flex-col space-y-6 text-left">
             {/* Status Pill with Mini Avatar */}
             <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 border border-sky-200/80 dark:border-sky-800/80 shadow-sm w-fit animate-fade-in backdrop-blur-md">
               <div className="relative w-5 h-5 rounded-full overflow-hidden ring-1 ring-sky-400 shrink-0">
@@ -133,7 +133,9 @@ export default function Hero() {
           </div>
 
           {/* Right Column: Profile Picture Visual */}
-          <div className="lg:col-span-5 flex justify-center">
+          <div className="md:col-span-5 flex justify-center mt-6 md:mt-0 relative">
+            {/* Aesthetic Background Halos behind the image */}
+            <div className="absolute -inset-4 bg-gradient-to-tr from-cyan-500/20 via-indigo-500/20 to-purple-500/20 rounded-full blur-2xl pointer-events-none -z-10 animate-pulse-slow"></div>
             <ProfileVisual />
           </div>
         </div>
