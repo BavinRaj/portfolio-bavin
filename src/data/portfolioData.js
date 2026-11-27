@@ -8,8 +8,8 @@ export const portfolioData = {
     phone: "+91 9360837010",
     github: "https://github.com/BavinRaj",
     linkedin: "https://linkedin.com/in/bavin-raj-m-823aa2268",
-    resumeUrl: "/resume-bavin-m.pdf",
-    profileImage: "/profile.jpg",
+    resumeUrl: `${import.meta.env.BASE_URL}resume-bavin-m.pdf`,
+    profileImage: `${import.meta.env.BASE_URL}profile.jpg`,
     shortIntro:
       "I am an Information Technology graduate currently preparing for placements and developing skills in Java Full Stack Development. I enjoy building responsive web applications and mastering modern technologies across Java, Spring Boot, React, and MySQL.",
     aboutText:

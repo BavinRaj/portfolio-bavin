@@ -4,7 +4,7 @@ import { portfolioData } from '../data/portfolioData';
 
 export default function ProfileVisual() {
   const { personal } = portfolioData;
-  const [imageSrc, setImageSrc] = useState(personal.profileImage || '/profile.jpg');
+  const [imageSrc, setImageSrc] = useState(personal.profileImage || `${import.meta.env.BASE_URL}profile.jpg`);
   const [hasError, setHasError] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
